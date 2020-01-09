@@ -1,0 +1,21 @@
+# Skip over Minecraft pastes
+minecraft
+bukkit
+craft
+
+# Skip over code
+class
+import
+include
+void
+static
+final
+thread
+virtual
+function
+typedef
+defined
+integer
+
+# Skip over Pokemon
+pokemon

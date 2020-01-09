@@ -1,0 +1,6 @@
+password
+username
+administrator
+ssh
+ssh-rsa
+dropbox
