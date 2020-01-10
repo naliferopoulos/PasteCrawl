@@ -14,6 +14,7 @@ def collect_taggers(dir):
             taggers.append(tagger)
 
 def reload_taggers(dir):
+    global taggers
     taggers = []
     collect_taggers(dir)
 
