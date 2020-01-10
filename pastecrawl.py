@@ -108,6 +108,8 @@ while True:
                     # Skip over default ones
                     if "archive" not in link:
                         links.append(link) 
+    except SystemExit:
+        sys.exit(0)
     except:
         print("Failed to fetch latest content. Potential timeout by service. This may indicate a temporary ban!")
         break
@@ -165,6 +167,8 @@ while True:
             # Sleep
             time.sleep(10)
 
+        except SystemExit:
+            sys.exit(0)
         except:
             pass
 
