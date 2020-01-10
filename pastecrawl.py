@@ -64,7 +64,6 @@ def sigint_handler(sig, frame):
                 print("")
         elif instruction == "reload":
             tagmaster.reload_taggers('taggers')
-            break
         elif instruction == "links":
             for link in links:
                 print(bcolors.WARNING + "--> " + bcolors.ENDC, end='')
