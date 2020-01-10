@@ -13,6 +13,10 @@ def collect_taggers(dir):
             tagger = my_class = getattr(module, 'Tagger')
             taggers.append(tagger)
 
+def reload_taggers(dir):
+    taggers = []
+    collect_taggers(dir)
+
 def run_taggers(text):
     tags = []
 
