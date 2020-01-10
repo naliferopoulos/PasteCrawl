@@ -5,6 +5,7 @@ import tagmaster
 import signal
 import inspect
 import sys
+import codecs
 
 # ANSI Colors
 class bcolors:
@@ -25,6 +26,10 @@ whitelist = []
 
 # Shoudl we exit?
 should_exit = False
+
+# An exception for blacklisted words
+class BlacklistedWordException(Exception):
+    pass
 
 # Parse the blacklist
 with open('blacklist.txt', 'r') as f:
@@ -154,14 +159,14 @@ while True:
                     if word in crawl.text.lower():
                         print(bcolors.FAIL + " [" + word + "] " + bcolors.ENDC, end='')
                         # Bail out early
-                        raise Exception("Blacklisted word!")
+                        raise BlacklistedWordException("Blacklisted word!")
 
             # Prepend an empty tag if the list is not empty for cosmetic purposes
             if len(tags) > 0:
                 tags.insert(0, '')
 
             # Write the crawel to the file, appending the timestamp and tag list to the filename
-            with open('./crawls/' + str(int(time.time())) + '_'.join(tags) + ".txt", "w") as f:
+            with codecs.open('./crawls/' + str(int(time.time())) + '_'.join(tags) + ".txt", "w", encoding="utf-8") as f:
                 f.write(crawl.text)
             
             # Sleep
@@ -169,8 +174,10 @@ while True:
 
         except SystemExit:
             sys.exit(0)
-        except:
+        except BlacklistedWordException:
             pass
+        except Exception as e:
+            print(e)
 
         # Advance to the next line
         print("")
